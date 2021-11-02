@@ -1,0 +1,38 @@
+@import "./reset.css";
+
+.nav{
+    color : black;
+    height : 35px;
+    display:  flex;
+    font-size: 12px;
+    font-weight : 500;
+    background-color : rgb(0, 0, 0,0.1); 
+}
+
+.nav-logo{
+    margin-left : 5px;
+    margin-right: 10px;
+}
+
+.nav-logo a,img{
+    display:  flex;
+}
+
+.nav-logo img{
+    width : 30px;
+    height: 30px;
+}
+
+.logo-content, .nav-links{
+    margin-top : 10px;
+}
+
+.nav-links a{
+    margin-left: 20px;
+}
+
+.nav-loggedIn{
+    margin-top : 10px;
+    position : fixed;
+    margin-left : 970px; 
+}
