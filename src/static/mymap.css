@@ -1,0 +1,45 @@
+@import "./reset.css";
+
+.mymap-loader {
+  height: 65%;
+  width: 60%;
+  position: absolute;
+  padding-left: 140px;
+  margin-top: 70px;
+}
+
+.mymap-header {
+  margin-top: -10px;
+  position: absolute;
+  font-size: small;
+}
+
+.mymap {
+  position: absolute;
+  margin-top: 10px;
+}
+
+.myTags {
+  position: absolute;
+  margin-top: 380px;
+  height: 300px;
+  width: 748px;
+}
+
+.myTags-header,
+.myTags-graph {
+  margin-left: 140px;
+  position: relative;
+}
+
+.myTags-header {
+  font-size: small;
+}
+
+.myTags-graph {
+  margin-bottom: 20px;
+  margin-top: 10px;
+  height: 250px;
+  width: 100%;
+  background-color: rgb(0, 0, 0, 0.1);
+}

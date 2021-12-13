@@ -1,1 +1,29 @@
 @import "./reset.css";
+
+.map-loader{
+    text-align: center;
+}
+
+.map{
+    position : fixed;
+}
+
+.search-container{
+    margin-top : 45px;
+    margin-left : 10px;
+    position : absolute;
+    display: flex;
+}
+.findAddress{
+    position : relative;
+    width : 200px;
+    height : 15px;
+    background-color: rgba(199, 199, 199, 0.5);
+    border-width: thin;
+}
+
+.submitAddress-button{
+    position : relative;
+    margin-left: 5px;
+    padding: 0;
+}
