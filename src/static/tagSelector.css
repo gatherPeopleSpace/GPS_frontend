@@ -1,0 +1,19 @@
+@import "./reset.css";
+
+.tagSelector-container {
+  font-size: 11px;
+}
+
+.tagSelector-selected {
+  display: flex;
+  margin-top: 5px;
+}
+
+.tagSelector-selected > span {
+  margin: 5px 5px 0 5px;
+  width: 35px;
+  height: 20px;
+  text-align: center;
+  font-size: 11px;
+  padding-top: 7px;
+}

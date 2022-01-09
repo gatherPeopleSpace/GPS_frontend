@@ -1,136 +1,135 @@
 @import "./reset.css";
 
-.Gallery-container{
-    width: 100%;
-    position: absolute;
+.Gallery-container {
+  width: 100%;
+  position: absolute;
 }
 
-.g-nav-container{
-    height: 25px;
-    width : 100%;
-    background-color : white;
-    position : fixed;
-    display: inline-block;
-    padding-top : 45px;
+.g-nav-container {
+  height: 25px;
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  display: inline-block;
+  padding-top: 50px;
 }
 
-.g-nav li{
-    float : right;
+.g-nav li {
+  float: right;
 }
 
-.random-button{
-    height : 20px;
-    width : 60px;
-    font-size: 10px;
-    margin-right : 5px;  
+.random-button {
+  height: 20px;
+  width: 60px;
+  font-size: 10px;
+  margin-right: 5px;
 }
 
-.g-find-container{
-    height : 20px;
+.g-find-container {
+  height: 20px;
 }
 
-.find-input{  
-    text-align : center;
-    vertical-align: bottom;
-    font-size: 10px;    
-    width : 60px;
-    height : 15px;
+.find-input {
+  text-align: center;
+  vertical-align: bottom;
+  font-size: 10px;
+  width: 60px;
+  height: 15px;
 }
 
-.find-button, .add-button{
-    font-size: 12px;
-    padding : 0;
-    width : 20px;
-    height : 20px;
-    margin-left : 3px;
+.find-button,
+.add-button {
+  font-size: 12px;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  margin-left: 3px;
 }
 
-.add-button{
-    margin-top : 1px;
-    margin-right : 5px;
+.add-button {
+  margin-top: 1px;
+  margin-right: 5px;
 }
 
-
-.g-Content-container{
-    position : absolute;
-    margin-top : 80px;
+.g-Content-container {
+  position: absolute;
+  margin-top: 90px;
 }
 
-.g-User-container{
-    margin-left : 211px;
-    height : 135px;
-    width: 600px;
-    background-color : rgb(233, 233, 233); 
+.g-User-container {
+  margin-left: 211px;
+  height: 135px;
+  width: 600px;
+  background-color: rgb(233, 233, 233);
 }
 
-.User-profile{
-    position : absolute;
-    margin-left : 10px;
-    padding: 17px;
+.User-profile {
+  position: absolute;
+  margin-left: 10px;
+  padding: 17px;
 }
 
-.User-profile-image{
-    width: 100px;
-    height: 100px;
+.User-profile-image {
+  width: 100px;
+  height: 100px;
 }
 
-.User-header, .User-introduction, .User-follow{   
-    position : relative;
-    margin-left: 150px;
-    padding-top : 20px;
+.User-header,
+.User-introduction,
+.User-follow {
+  position: relative;
+  margin-left: 150px;
+  padding-top: 20px;
 }
 
-.User-header{
-    font-size: 16px; 
+.User-header {
+  font-size: 16px;
 }
-.User-introduction{
-    font-size: 14px; 
-}
-
-.User-follower, .User-following, .User-addFriend{
-    margin-right: 20px;
-    font-size: 12px; 
+.User-introduction {
+  font-size: 14px;
 }
 
-.g-myRecords{
-    position : absolute;
-    height : 500px;
-    margin-top : 30px;
+.User-follower,
+.User-following,
+.User-addFriend {
+  margin-right: 20px;
+  font-size: 12px;
 }
 
-.g-photo-filter{
-    margin-left : 660px;
-    display: flex;
+.g-myRecords {
+  position: absolute;
+  height: 450px;
+  margin-top: 30px;
 }
 
-.photo-filter-kinds, .photo-filter-places{
-    font-size: 11px; 
-    width : 70px;
-    margin-right : 10px;
-    text-align : center;
+.g-photo-filter {
+  margin-left: 660px;
+  display: flex;
 }
 
-.myRecords-header,.myRecords-photoList{
-    margin-left : 211px;
-    position : relative;
-
-}
-.myRecords-header{
-    width : 100px;
-    margin-top : -15px;
-    font-size: 13px; 
-    margin-bottom: 10px;
+.photo-filter-kinds,
+.photo-filter-places {
+  font-size: 11px;
+  width: 70px;
+  margin-right: 10px;
+  text-align: center;
 }
 
-.myRecords-photoList{
-    height : 400px;
-    width: 600px;
-    background-color : rgb(233, 233, 233); 
-    margin-bottom : 20px;
+.myRecords-header,
+.myRecords-photoList {
+  margin-left: 211px;
+  position: relative;
+}
+.myRecords-header {
+  width: 100px;
+  margin-top: -10px;
+  font-size: 13px;
+  margin-bottom: 10px;
 }
 
-/* .g-pagination{    
-    height : 50px;
-    width: 600px;
-    background-color : rgb(233, 233, 233); 
-} */
+.myRecords-photoList {
+  height: 350px;
+  width: 600px;
+  background-color: rgba(173, 173, 173, 0.5);
+  margin-bottom: 20px;
+}

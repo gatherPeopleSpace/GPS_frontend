@@ -1,0 +1,77 @@
+@import "./reset.css";
+
+.follow-Container {
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  width: 190px;
+  height: 300px;
+  margin-left: -350px;
+  margin-top: -112px;
+}
+
+.follow-header-container {
+  z-index: 2;
+  height: 40px;
+  width: 179px;
+  position: fixed;
+  background-color: rgb(228, 228, 228);
+}
+
+.follow-header {
+  position: fixed;
+  z-index: 3;
+  font-size: 14px;
+  margin: 11px 0 0 17px;
+}
+
+.follow-close-button {
+  position: fixed;
+  z-index: 3;
+  margin: 25px 0 0 160px;
+  font-size: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  transform: translate(-10%, -90%);
+  padding: 0;
+}
+
+.follow-list-Container {
+  z-index: 1;
+  margin-top: 40px;
+  font-size: 12px;
+}
+
+.follow-list-Container li {
+  width: 170px;
+  display: flex;
+  background-color: rgba(233, 228, 214, 0.5);
+  margin-bottom: 5px;
+  padding: 8px;
+}
+
+.follow-list-Container li .name,
+.follow-list-Container li .intro {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* background-color: rgba(94, 94, 94, 0.2); */
+}
+
+.follow-list-Container li .name {
+  width: 60px;
+  text-align: center;
+  font-size: 11px;
+}
+
+.follow-list-Container li .intro {
+  max-width: 85px;
+  text-align: right;
+  font-size: 10px;
+  right: 0;
+  margin-right: 5px;
+  position: absolute;
+  border: 1px solid rgb(0, 0, 0, 0.3);
+  border-radius: 3px;
+  padding: 1px;
+}

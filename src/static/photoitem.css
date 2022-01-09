@@ -1,0 +1,26 @@
+@import "./reset.css";
+
+.photoItem-Container {
+  max-width: 600px;
+  display: grid;
+  grid-template-columns: 150px 150px 150px 150px;
+  grid-template-rows: 150px 150px;
+}
+
+.photoItem-Container img {
+  background-color: rgb(219, 219, 219);
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
+}
+
+/* 마우스 올리면 버튼 나타나게 하기 */
+.img-deleteButton {
+  position: absolute;
+  margin-left: 135px;
+  font-size: 10px;
+  margin-top: -145px;
+  padding: 0;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+}

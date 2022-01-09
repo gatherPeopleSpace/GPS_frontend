@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../static/home.css";
 import NaverMapAPI from "../components/NaverMapAPI";
 
@@ -10,6 +10,15 @@ const Home = () => {
   const [lat, setLat] = useState(37.54);
   const [lng, setLng] = useState(126.99);
   const [zoom, setZoom] = useState(12);
+
+  const [message, setMessage] = useState("");
+  useEffect(() => {
+    fetch("/")
+      .then((response) => response.text())
+      .then((message) => {
+        setMessage(message);
+      });
+  }, []);
 
   const handleChange = (e) => {
     const { address, value } = e.target;
