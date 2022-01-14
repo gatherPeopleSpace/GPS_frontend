@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import "../static/postmodal.css";
 import TagSelector from "../components/TagSelector";
 
-const Modal = ({ modalClose, userId }) => {
+const Modal = ({ modalClose, props }) => {
   const [imgLoaded, setImgLoad] = useState(false);
 
   const [photoInfo, setPhotoInfo] = useState({
@@ -42,20 +42,21 @@ const Modal = ({ modalClose, userId }) => {
   const OnSubmit = (e) => {
     e.preventDefault();
     tagRef.current.Change();
+    console.log(postObj);
 
-    fetch("서버주소/gallery/{userId}", {
-      method: "POST",
-      body: JSON.stringify(postObj),
-    })
-      .then((res) => {
-        if (res.state == 412) alert("이미지에 위치 정보가 없습니다.");
-        else if (res !== null) {
-          //address 있는 경우
-          this.props.history.push("서버주소/gallery/{userId}");
-          setPhotoInfo({ address: res.address });
-        } else alert("post 실패");
-      })
-      .catch((err) => alert("error"));
+    // fetch("서버주소/gallery/{userId}", {
+    //   method: "POST",
+    //   mode: 'cors',
+    //   body: JSON.stringify(postObj),
+    // })
+    //   .then((res) => {
+    //     if (res.state == 400) alert(res.msg);
+    //     else if (res !== null) { //address 있는 경우
+    //       this.props.history.push("서버주소/gallery/{userId}");
+    //       setPhotoInfo({ address: res.address });
+    //     } else alert("post 실패");
+    //   })
+    //   .catch((err) => alert("error"));
   };
 
   const onCloseModal = (e) => {

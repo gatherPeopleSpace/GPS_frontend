@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../static/follow.css";
 
-const Follow = ({ followModalClose, mode, user }) => {
+const Follow = ({ followModalClose, mode, userObj }) => {
   const [list, setList] = useState([
     { name: "김어진", intro: "한줄소개입니다." },
     { name: "문승재", intro: "컴퓨터과학과" },

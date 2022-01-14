@@ -25,17 +25,17 @@
   margin-right: 5px;
 }
 
-.g-find-container {
+/* .find-container {
   height: 20px;
-}
+} */
 
-.find-input {
+/* .find-input {
   text-align: center;
   vertical-align: bottom;
   font-size: 10px;
   width: 60px;
   height: 15px;
-}
+} */
 
 .find-button,
 .add-button {
@@ -98,11 +98,11 @@
 
 .g-myRecords {
   position: absolute;
-  height: 450px;
+  height: 430px;
   margin-top: 30px;
 }
 
-.g-photo-filter {
+/* .g-photo-filter {
   margin-left: 660px;
   display: flex;
 }
@@ -113,7 +113,7 @@
   width: 70px;
   margin-right: 10px;
   text-align: center;
-}
+} */
 
 .myRecords-header,
 .myRecords-photoList {
@@ -130,6 +130,6 @@
 .myRecords-photoList {
   height: 350px;
   width: 600px;
-  background-color: rgba(173, 173, 173, 0.5);
+  background-color: rgba(209, 209, 209, 0.5);
   margin-bottom: 20px;
 }

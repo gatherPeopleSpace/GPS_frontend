@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import PostModal from "../components/PostModal";
 import "../static/gallery.css";
 import Footer from "../components/Footer";
@@ -18,7 +19,7 @@ import ponyo1 from "../static/media/ponyo_1.jpg";
 import ponyo2 from "../static/media/ponyo_2.jpg";
 import ponyo3 from "../static/media/ponyo_3.jpg";
 
-const Gallery = (user) => {
+const Gallery = (props) => {
   const [photos, setPhotos] = useState([
     { id: 1, src: sen1 },
     { id: 2, src: sen2 },
@@ -60,7 +61,35 @@ const Gallery = (user) => {
     { id: 48, src: ponyo1 },
     { id: 49, src: ponyo2 },
     { id: 50, src: ponyo3 },
+    { id: 51, src: sen1 },
+    { id: 52, src: sen2 },
+    { id: 53, src: sen3 },
+    { id: 54, src: sen4 },
+    { id: 55, src: kiki1 },
+    { id: 56, src: kiki2 },
+    { id: 57, src: kiki3 },
+    { id: 58, src: ponyo1 },
+    { id: 59, src: ponyo2 },
+    { id: 60, src: ponyo3 },
   ]);
+
+  // useEffect(() => {
+  //   // url의 userId=n 부분에서 n 가져오기
+  //   const url = new URL(window.location.href);
+  //   const urlParams = url.searchParams;
+  //   setPageUserId = urlParams.get("userId");
+
+  //   //photoList 가져오기
+  //   fetch("http://localhost:8080/gallery/{page_userId}")
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       console.log(1, res);
+  //       setPhotos(res);
+  //     });
+  // }, []);
+
+  const [page_userId, setPageUserId] = useState("");
+  const [isFollowed, setIsFollowed] = useState();
 
   const userName = "username";
   const introduction = "한 줄 소개";
@@ -85,15 +114,33 @@ const Gallery = (user) => {
     setFollow("following");
   };
 
-  // useEffect(() => {
-  //   fetch("서버주소/gallery/{userId}")
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       console.log(1, res);
-  //       setPhotos(res);
-  //     });
-  // }, []);
+  // const history = useHistory();
 
+  const onClickRandom = () => {
+    //   fetch("http://localhost:8080/gallery/")
+    //       .then((res) => res.json())
+    //       .then(res=>{
+    //   if (res.token) {
+    //     localStorage.setItem('token', res.token);
+    //     history.push("/gallery/userId={res}");
+    //     }
+    // });
+  };
+
+  const onClickAddFriend = () => {
+    // fetch("서버주소/gallery/{userId}", {
+    //   method: "POST",
+    //   mode: 'cors',
+    //   body: JSON.stringify(page_userId),
+    // })
+    //   .then((res) => {
+    //     if (res.state == 412) alert("이미지에 위치 정보가 없습니다.");
+    // else alert("post 실패");
+    //   })
+    //   .catch((err) => alert("error"));
+  };
+
+  //pagination을 위한 변수
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(8);
@@ -125,38 +172,14 @@ const Gallery = (user) => {
             {followModalOpen && follow === "following" && (
               <Follow followModalClose={followingModalClose} mode="팔로잉" />
             )}
-            <button className="User-addFriend">친구 추가 ➕</button>
+            {/* {page_userId !== props.userObj.userId && ( */}
+            <button className="User-addFriend" onClick={onClickAddFriend}>
+              친구 추가 ➕
+            </button>
           </div>
         </div>
 
         <div className="g-myRecords">
-          <div className="g-photo-filter">
-            {/* dropdown menu*/}
-            <select
-              className="photo-filter-kinds"
-              name="태그"
-              defaultValue="전체"
-            >
-              <option value="전체">전체</option>
-              <option value="분위기">분위기</option>
-              <option value="음식">음식</option>
-              <option value="연령대">연령대</option>
-              <option value="장소">장소</option>
-              <option value="종류">종류</option>
-            </select>
-            <select
-              className="photo-filter-places"
-              name="위치"
-              defaultValue="전체"
-            >
-              <option value="전체">전체</option>
-              <option value="종로구">종로구</option>
-              <option value="서대문구">서대문구</option>
-              <option value="용산구">용산구</option>
-              <option value="강남구">강남구</option>
-            </select>
-          </div>
-
           <div className="myRecords-header">나의 기록</div>
           <div className="myRecords-photoList">
             <PhotoItem photolist={currentPosts} />
@@ -179,12 +202,10 @@ const Gallery = (user) => {
             </button>
           </li>
           {modalOpen && <PostModal modalClose={modalClose}></PostModal>}
-          <li className="find-container">
-            <input className="find-input" placeholder="친구찾기"></input>
-            <button className="find-button">🔎</button>
-          </li>
           <li>
-            <button className="random-button">파도타기</button>
+            <button className="random-button" onClick={onClickRandom}>
+              파도타기
+            </button>
           </li>
         </ul>
       </div>

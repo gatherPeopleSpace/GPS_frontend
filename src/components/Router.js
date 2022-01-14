@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Redirect,
   HashRouter as Router,
@@ -13,7 +13,9 @@ import Navigation from "../pages/Navigation";
 import LogIn from "../pages/LogIn";
 
 const AppRouter = () => {
-  const flag = false;
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  //아이디(userId), email, 이름, isPublic, 프사 ,닉네임(null), 로그인 타입(null)
+  const [userObj, setUserObj] = useState();
   return (
     <Router>
       <Switch>
@@ -21,40 +23,27 @@ const AppRouter = () => {
           <>
             <Route exact path="/">
               <Home />
-              <Navigation />
+              <Navigation isLoggedIn={isLoggedIn} userObj={userObj} />
             </Route>
             <Route exact path="/MyMap">
-              <MyMap />
-              <Navigation />
+              <MyMap userObj={userObj} />
+              <Navigation isLoggedIn={isLoggedIn} userObj={userObj} />
             </Route>
             <Route exact path="/gallery">
-              <Gallery />
-              <Navigation />
+              <Gallery userObj={userObj} />
+              <Navigation isLoggedIn={isLoggedIn} userObj={userObj} />
             </Route>
             <Route exact path="/about">
               <About />
-              <Navigation />
+              <Navigation isLoggedIn={isLoggedIn} userObj={userObj} />
             </Route>
             <Route exact path="/login">
-              <LogIn />
-              <Navigation />
+              <LogIn setIsLoggedIn={setIsLoggedIn} setUserObj={setUserObj} />
+              <Navigation isLoggedIn={isLoggedIn} userObj={userObj} />
             </Route>
           </>
           <Redirect from="*" to="/" />
         </>
-
-        {/* {flag? (
-                    <> 
-                        <Route exact path="/"><Home/></Route>
-                        <Route exact path="/profile"><Profile/></Route>
-                        <Redirect from="*" to="/" />
-                    </>
-                ) : (
-                    <>
-                        <Route exact path="/Auth"><Auth /></Route>
-                        <Redirect from="*" to="/" />
-                    </>
-                )} */}
       </Switch>
     </Router>
   );
