@@ -1,31 +1,34 @@
 import React from "react";
 import gpsIcon from "../static/gpsIcon.png";
 import "../static/navigation.css";
+import { Link } from "react-router-dom";
 
 export default (props) => {
   return (
     <nav className="nav">
       <div className="nav-logo">
-        <a href="#">
+        <Link to="/home">
           <img src={gpsIcon} />
           <div className="logo-content">gps</div>
-        </a>
+        </Link>
       </div>
 
       {props.isLoggedIn && (
         <div className="nav-links">
-          <a href="#/myMap">myMap</a>
-          <a href="#/gallery">gallery</a>
+          <Link to="/myMap">myMap</Link>
+          <Link to="/gallery">gallery</Link>
         </div>
       )}
 
       <div className="nav-loggedIn">
         {!props.isLoggedIn ? (
-          <a href="#/login" className="logIn-button">
+          <Link to="/login" className="logIn-button">
             log in
-          </a>
+          </Link>
         ) : (
-          <div>welcome {props.userObj}</div>
+          <Link to="/login" className="logIn-button">
+            log out
+          </Link>
         )}
       </div>
     </nav>

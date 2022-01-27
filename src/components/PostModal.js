@@ -44,7 +44,7 @@ const Modal = ({ modalClose, props }) => {
     tagRef.current.Change();
     console.log(postObj);
 
-    // fetch("서버주소/gallery/{userId}", {
+    // fetch("http://localhost:8080/gallery/{userId}", {
     //   method: "POST",
     //   mode: 'cors',
     //   body: JSON.stringify(postObj),

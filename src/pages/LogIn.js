@@ -1,19 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import "../static/login.css";
+import { KAKAO_AUTH_URL } from "../components/OAuth";
 
 const LogIn = (props) => {
-  // const history = useHistory();
-  // const onClickGoogle = () => {
-  //   history.push("/oauth2/authorization/google");
-  // };
-  // const onClickNaver = () => {
-  //   history.push("/oauth2/authorization/naver");
-  // };
-  // const onClickKakao = () => {
-  //   history.push("/oauth2/authorization/kakao");
-  // };
-
   return (
     <>
       <div className="login-container">
@@ -36,19 +26,9 @@ const LogIn = (props) => {
             <a href="/oauth2/authorization/naver" className="login-naver">
               네이버로 로그인
             </a>
-            <a href="/oauth2/authorization/kakao" className="login-kakao">
+            <a href={KAKAO_AUTH_URL} className="login-kakao">
               카카오톡으로 로그인
             </a>
-
-            {/* <button className="login-google" onClick={onClickGoogle}>
-              구글로 로그인
-            </button> */}
-            {/* <button className="login-naver" onClick={onClickNaver}>
-              네이버로 로그인
-            </button>
-            <button className="login-kakao" onClick={onClickKakao}>
-              카카오톡으로 로그인
-            </button> */}
           </div>
         </div>
       </div>
