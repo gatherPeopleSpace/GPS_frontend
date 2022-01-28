@@ -3,13 +3,13 @@ import "../static/photoitem.css";
 
 const PhotoItem = ({ photolist }) => {
   const onButtonClick = () => {
-    fetch("서버주소/gallery/{userId}", {
-      method: "Delete",
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log("delete");
-      });
+    // fetch("서버주소/gallery/{userId}", {
+    //   method: "Delete",
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     console.log("delete");
+    //   });
   };
 
   return (

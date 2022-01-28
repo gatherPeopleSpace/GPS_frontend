@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { CLIENT_ID, REDIRECT_URI } from "./OAuth";
 
-const KakaoRedirectHandler = ({ setIsLoggedIn }) => {
+const KakaoRedirectHandler = ({ setIsLoggedIn, setUserObj }) => {
   const history = useHistory();
 
   let code = new URL(window.location.href).searchParams.get("code");
@@ -19,8 +19,6 @@ const KakaoRedirectHandler = ({ setIsLoggedIn }) => {
       }).then((res) => {
         if (res.status === 201 || res.status === 200) {
           setIsLoggedIn(true);
-          // const ACCESS_TOKEN = res.data.accessToken;
-
           history.push("/home");
         } else {
           window.alert("로그인에 실패하였습니다.");

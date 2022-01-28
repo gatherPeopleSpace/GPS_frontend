@@ -17,46 +17,53 @@ import KakaoRedirectHandler from "./KakaoRedirectHandler";
 const AppRouter = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   //아이디(userId), email, 이름, isPublic, 프사 ,닉네임(null), 로그인 타입(null)
-  const [userObj, setUserObj] = useState();
+  const [userObj, setUserObj] = useState({
+    userId: "",
+    email: "",
+    name: "",
+    isPublic: "",
+    profile: "",
+    introduce: "",
+  });
   return (
     <BrowserRouter>
       <Switch>
         <>
-          <>
-            <Route
-              exact
-              path="/"
-              render={() => {
-                return <Redirect to="/home" />;
-              }}
-            />
-            <Route exact path="/home">
-              <Home />
-              <Navigation isLoggedIn={isLoggedIn} userObj={userObj} />
-            </Route>
-            <Route exact path="/MyMap">
-              <MyMap userObj={userObj} />
-              <Navigation isLoggedIn={isLoggedIn} userObj={userObj} />
-            </Route>
-            <Route exact path="/gallery">
-              <Gallery userObj={userObj} />
-              <Navigation isLoggedIn={isLoggedIn} userObj={userObj} />
-            </Route>
-            <Route exact path="/about">
-              <About />
-              <Navigation isLoggedIn={isLoggedIn} userObj={userObj} />
-            </Route>
-            <Route exact path="/login">
-              <LogIn setIsLoggedIn={setIsLoggedIn} setUserObj={setUserObj} />
-              <Navigation isLoggedIn={isLoggedIn} userObj={userObj} />
-            </Route>
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return <Redirect to="/home" />;
+            }}
+          />
+          <Route exact path="/home">
+            <Home />
+          </Route>
 
-            <Route exact path="/login/oauth2/code/kakao">
-              {console.log("Router On")}
-              <KakaoRedirectHandler setIsLoggedIn={setIsLoggedIn} />
-              {console.log("Router Off")}
-            </Route>
-          </>
+          <Route exact path="/login">
+            <LogIn setIsLoggedIn={setIsLoggedIn} setUserObj={setUserObj} />
+          </Route>
+
+          <Route exact path="/login/oauth2/code/kakao">
+            <KakaoRedirectHandler
+              setIsLoggedIn={setIsLoggedIn}
+              setUserObj={setUserObj}
+            />
+          </Route>
+
+          <Route exact path="/MyMap">
+            <MyMap userObj={userObj} />
+          </Route>
+          <Route exact path="/gallery">
+            <Gallery userObj={userObj} />
+          </Route>
+          <Route exact path="/about">
+            <About />
+          </Route>
+
+          <Route path="*">
+            <Navigation setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+          </Route>
         </>
       </Switch>
     </BrowserRouter>

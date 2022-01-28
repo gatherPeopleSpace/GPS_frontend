@@ -47,3 +47,9 @@ img {
 .nav-loggedIn a {
   font-size: 11px;
 }
+
+.logOut-button {
+  font-size: 11px;
+  border: none;
+  background-color: rgb(233, 233, 233, 0);
+}

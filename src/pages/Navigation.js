@@ -1,9 +1,25 @@
 import React from "react";
 import gpsIcon from "../static/gpsIcon.png";
 import "../static/navigation.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
 
-export default (props) => {
+const Navigation = (props) => {
+  const history = useHistory();
+  console.log(props);
+
+  const onLogoutClick = () => {
+    axios({
+      method: "POST",
+      url: `http://localhost:8080/logout`,
+    }).then((res) => {
+      if (res.status === 201 || res.status === 200) {
+        props.setIsLoggedIn(false);
+        window.alert("로그아웃 되었습니다.");
+        history.push("/home");
+      } else window.alert("로그아웃 실패하였습니다.");
+    });
+  };
   return (
     <nav className="nav">
       <div className="nav-logo">
@@ -26,11 +42,13 @@ export default (props) => {
             log in
           </Link>
         ) : (
-          <Link to="/login" className="logIn-button">
+          <button className="logOut-button" onClick={onLogoutClick}>
             log out
-          </Link>
+          </button>
         )}
       </div>
     </nav>
   );
 };
+
+export default Navigation;
