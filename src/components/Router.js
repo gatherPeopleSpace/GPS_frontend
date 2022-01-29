@@ -21,7 +21,7 @@ const AppRouter = () => {
     userId: "",
     email: "",
     name: "",
-    isPublic: "",
+    isPublic: false,
     profile: "",
     introduce: "",
   });
@@ -51,17 +51,48 @@ const AppRouter = () => {
             />
           </Route>
 
-          <Route exact path="/MyMap">
-            <MyMap userObj={userObj} />
-          </Route>
-          <Route exact path="/gallery">
-            <Gallery userObj={userObj} />
-          </Route>
+          {isLoggedIn ? ( //로그인 돼있으면 mymap, gallery url에서 해당 component 보여줌
+            <>
+              <Route exact path="/MyMap">
+                <MyMap userObj={userObj} />
+              </Route>
+              <Route exact path="/gallery">
+                <Gallery userObj={userObj} setUserObj={setUserObj} />
+              </Route>
+            </>
+          ) : (
+            //로그인 안되어 있으면 mymap, gallery url에서 home으로 redirect
+            <>
+              {" "}
+              <Route exact path="/MyMap">
+                <MyMap userObj={userObj} />
+              </Route>
+              <Route exact path="/gallery">
+                <Gallery userObj={userObj} setUserObj={setUserObj} />
+              </Route>
+              {/* <Route
+                exact
+                path="/MyMap"
+                render={() => {
+                  return <Redirect to="/home" />;
+                }}
+              />
+
+              <Route
+                exact
+                path="/gallery"
+                render={() => {
+                  return <Redirect to="/home" />;
+                }}
+              /> */}
+            </>
+          )}
+
           <Route exact path="/about">
             <About />
           </Route>
 
-          <Route path="*">
+          <Route path="/">
             <Navigation setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
           </Route>
         </>

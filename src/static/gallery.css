@@ -79,11 +79,15 @@
 .User-follow {
   position: relative;
   margin-left: 150px;
-  padding-top: 20px;
+}
+
+.User-follow {
+  padding-top: 15px;
 }
 
 .User-header {
   font-size: 16px;
+  padding-top: 20px;
 }
 .User-introduction {
   font-size: 14px;

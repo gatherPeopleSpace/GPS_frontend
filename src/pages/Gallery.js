@@ -6,8 +6,9 @@ import Footer from "../components/Footer";
 import PhotoItem from "../components/PhotoItem";
 import Follow from "../components/Follow";
 import Pagination from "../components/Pagination";
+import GalleryFollow from "../components/GalleryFollow";
+import EditIntro from "../components/EditIntro";
 
-import profile from "../static/media/KakaoTalk_20210328_192027988.jpg";
 import sen1 from "../static/media/sen_1.png";
 import sen2 from "../static/media/sen_2.png";
 import sen3 from "../static/media/sen_3.png";
@@ -91,53 +92,23 @@ const Gallery = (props) => {
   const [page_userId, setPageUserId] = useState("");
   const [isFollowed, setIsFollowed] = useState();
 
-  const userName = "username";
-  const introduction = "한 줄 소개";
-  const userProfile = profile;
-
   const [modalOpen, setModalOpen] = useState(false);
 
   const modalClose = () => {
     setModalOpen(!modalOpen);
   };
 
-  const [followModalOpen, setFollowModalOpen] = useState(false);
-  const [follow, setFollow] = useState("");
-
-  const followerModalClose = () => {
-    setFollowModalOpen(!followModalOpen);
-    setFollow("follower");
-  };
-
-  const followingModalClose = () => {
-    setFollowModalOpen(!followModalOpen);
-    setFollow("following");
-  };
-
-  // const history = useHistory();
+  const history = useHistory();
 
   const onClickRandom = () => {
-    //   fetch("http://localhost:8080/gallery/")
-    //       .then((res) => res.json())
-    //       .then(res=>{
-    //   if (res.token) {
-    //     localStorage.setItem('token', res.token);
-    //     history.push("/gallery/userId={res}");
-    //     }
-    // });
-  };
-
-  const onClickAddFriend = () => {
-    // fetch("서버주소/gallery/{userId}", {
-    //   method: "POST",
-    //   mode: 'cors',
-    //   body: JSON.stringify(page_userId),
-    // })
-    //   .then((res) => {
-    //     if (res.state == 412) alert("이미지에 위치 정보가 없습니다.");
-    // else alert("post 실패");
-    //   })
-    //   .catch((err) => alert("error"));
+    fetch("http://localhost:8080/gallery/")
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("token", res.token);
+          history.push("/gallery/userId={res}");
+        }
+      });
   };
 
   //pagination을 위한 변수
@@ -151,32 +122,21 @@ const Gallery = (props) => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
+    //쓸데없는 DIV 없애기
     <div className="Gallery-container">
       <div className="g-Content-container">
         <div className="g-User-container">
           <div className="User-profile">
-            <img className="User-profile-image" src={userProfile} />
+            <img className="User-profile-image" src={props.userObj.profile} />
           </div>
-          <div className="User-header">{userName} 님의 gallery</div>
-          <div className="User-introduction">{introduction}</div>
-          <div className="User-follow">
-            <button className="User-follower" onClick={followerModalClose}>
-              팔로워
-            </button>
-            {followModalOpen && follow === "follower" && (
-              <Follow followModalClose={followerModalClose} mode="팔로워" />
-            )}
-            <button className="User-following" onClick={followingModalClose}>
-              팔로잉
-            </button>
-            {followModalOpen && follow === "following" && (
-              <Follow followModalClose={followingModalClose} mode="팔로잉" />
-            )}
-            {/* {page_userId !== props.userObj.userId && ( */}
-            <button className="User-addFriend" onClick={onClickAddFriend}>
-              친구 추가 ➕
-            </button>
-          </div>
+          <div className="User-header">{props.userObj.name} 님의 gallery</div>
+
+          <EditIntro
+            intro={props.userObj.intro}
+            setUserObj={props.setUserObj}
+          />
+
+          <GalleryFollow />
         </div>
 
         <div className="g-myRecords">

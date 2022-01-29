@@ -1,0 +1,29 @@
+@import "./reset.css";
+
+.introduce-container {
+  display: flex;
+  margin-top: 20px;
+  height: 20px;
+  width: 550px;
+  position: relative;
+  /* background-color: rgba(18, 44, 35, 0.5); */
+}
+
+.introduce-container button {
+  font-size: 15px;
+  border: none;
+  margin-left: 5px;
+  background-color: rgba(194, 92, 92, 0);
+}
+
+.User-introduction {
+  padding: 2px;
+  font-size: 14px;
+  max-width: 400px;
+  /* background-color: rgb(94, 199, 164, 0.5); */
+}
+
+.input-introduce {
+  margin-left: 150px;
+  width: 400px;
+}
