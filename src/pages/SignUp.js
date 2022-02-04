@@ -14,22 +14,18 @@ const SignUp = ({ setUserObj, userObj }) => {
 
   const handleChangeName = (e) => {
     setName(e.target.value);
-    console.log(NAME);
   };
 
   const handleChangeID = (e) => {
     setID(e.target.value);
-    console.log(ID);
   };
 
   const handleChangePassword = (e) => {
     setPassword(e.target.value);
-    console.log(PASSWORD);
   };
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
-    console.log(EMAIL);
   };
 
   const onClickCheck = () => {

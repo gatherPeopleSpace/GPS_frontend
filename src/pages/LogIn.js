@@ -12,36 +12,32 @@ const LogIn = ({ setIsLoggedIn, setUserObj, userObj }) => {
   const [password, setPassword] = useState("");
 
   const handleChangePassword = (e) => {
-    const { password, value } = e.target;
-    const newPassword = { password: value };
-    setPassword(newPassword);
+    setPassword(e.target.value);
   };
 
   const handleChangeID = (e) => {
-    const { id, value } = e.target;
-    const newID = { id: value };
-    setId(newID);
+    setId(e.target.value);
   };
 
   const onClickLogin = () => {
-    axios({
-      method: "POST",
-      url: `http://localhost:8080/login/`,
-    })
+    console.log({ id: id, password: password });
+    axios
+      .post(
+        `http://localhost:8080/login`,
+        { id: id, password: password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then((res) => {
         if (res.status === 201 || res.status === 200) {
           setIsLoggedIn(true);
           console.log(res);
+          const newUserObj = res.userObj;
           //res에서 userObj 받아와서 setUserObj로 userObj 받아오는 코드 짜기
-          setUserObj({
-            userId: "thisisUserId",
-            email: "kimain77@daum.net",
-            name: "김어진",
-            isPublic: true,
-            profile: profileImage,
-            introduce: "한줄 소개를 입력해보세요",
-            password: "wonderful11",
-          });
+          setUserObj(newUserObj);
           history.push("/home");
         } else {
           window.alert("로그인에 실패하였습니다.");
