@@ -7,33 +7,37 @@ import profileImage from "../static/media/KakaoTalk_20210328_192027988.jpg";
 const SignUp = ({ setUserObj, userObj }) => {
   const history = useHistory();
 
-  const [name, setName] = useState("");
+  const [NAME, setName] = useState("");
   const [ID, setID] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [PASSWORD, setPassword] = useState("");
+  const [EMAIL, setEmail] = useState("");
 
   const handleChangeName = (e) => {
     const { name, value } = e.target;
     const newName = { name: value };
     setName(newName);
+    console.log(NAME);
   };
 
   const handleChangeID = (e) => {
     const { id, value } = e.target;
     const newID = { id: value };
     setID(newID);
+    console.log(ID);
   };
 
   const handleChangePassword = (e) => {
     const { password, value } = e.target;
     const newPassword = { password: value };
     setPassword(newPassword);
+    console.log(PASSWORD);
   };
 
   const handleChangeEmail = (e) => {
     const { email, value } = e.target;
     const newEmail = { email: value };
     setEmail(newEmail);
+    console.log(EMAIL);
   };
 
   const onClickCheck = () => {
@@ -42,22 +46,23 @@ const SignUp = ({ setUserObj, userObj }) => {
 
   const onClickSignUp = () => {
     setUserObj({
-      userId: ID,
-      email: email,
-      name: name,
-      isPublic: true,
-      profile: profileImage,
-      introduce: "한줄 소개를 입력해보세요",
-      password: password,
+      id: ID,
+      email: EMAIL,
+      name: NAME,
+      password: PASSWORD,
+      //   isPublic: true,
+      //   profile: profileImage,
+      //   introduce: "한줄 소개를 입력해보세요",
     });
 
-    axios({
-      method: "POST",
-      url: `http://localhost:8080/signup`,
-      data: {
-        userObj: userObj,
-      },
-    })
+    console.log(userObj);
+
+    axios
+      .post(`http://localhost:8080/signup`, JSON.stringify(userObj), {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
       .then((res) => {
         if (res.status === 201 || res.status === 200) {
           window.alert("회원가입이 완료되었습니다.");

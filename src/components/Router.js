@@ -19,12 +19,12 @@ const AppRouter = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   //아이디(userId), email, 이름, isPublic, 프사 ,닉네임(null), 로그인 타입(null)
   const [userObj, setUserObj] = useState({
-    userId: "",
+    id: "",
     email: "",
     name: "",
-    isPublic: false,
-    profile: "",
-    introduce: "",
+    // isPublic: false,
+    // profile: "",
+    // introduce: "",
     password: "",
   });
   return (

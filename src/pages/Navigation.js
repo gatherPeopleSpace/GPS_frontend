@@ -6,7 +6,6 @@ import axios from "axios";
 
 const Navigation = (props) => {
   const history = useHistory();
-  console.log(props);
 
   const onLogoutClick = () => {
     axios({
