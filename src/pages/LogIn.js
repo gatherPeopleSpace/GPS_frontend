@@ -1,9 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "../static/login.css";
 import { KAKAO_AUTH_URL } from "../components/OAuth";
+import axios from "axios";
+import profileImage from "../static/media/KakaoTalk_20210328_192027988.jpg";
 
-const LogIn = (props) => {
+const LogIn = ({ setIsLoggedIn, setUserObj, userObj }) => {
+  const history = useHistory();
+
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleChangePassword = (e) => {
+    const { password, value } = e.target;
+    const newPassword = { password: value };
+    setPassword(newPassword);
+  };
+
+  const handleChangeID = (e) => {
+    const { id, value } = e.target;
+    const newID = { id: value };
+    setId(newID);
+  };
+
+  const onClickLogin = () => {
+    axios({
+      method: "POST",
+      url: `http://localhost:8080/login/`,
+    })
+      .then((res) => {
+        if (res.status === 201 || res.status === 200) {
+          setIsLoggedIn(true);
+          console.log(res);
+          //res에서 userObj 받아와서 setUserObj로 userObj 받아오는 코드 짜기
+          setUserObj({
+            userId: "thisisUserId",
+            email: "kimain77@daum.net",
+            name: "김어진",
+            isPublic: true,
+            profile: profileImage,
+            introduce: "한줄 소개를 입력해보세요",
+            password: "wonderful11",
+          });
+          history.push("/home");
+        } else {
+          window.alert("로그인에 실패하였습니다.");
+          history.push("/login");
+        }
+      })
+      .catch((err) => {
+        window.alert(err);
+        history.push("/login");
+      });
+  };
+
+  const onClickSignup = () => {
+    history.push("/signup");
+  };
+
   return (
     <>
       <div className="login-container">
@@ -14,21 +68,30 @@ const LogIn = (props) => {
           </p>
           <p className="login-main-content">매일 새로운 경험들이 추가됩니다.</p>
         </div>
+
         <div className="login-form-container">
           <div className="login-form-header">Log In</div>
           <div className="login-form-content">
             로그인 후 더 다양한 기능을 이용하실 수 있습니다.
           </div>
-          <div className="login-form-button">
-            <a href="/oauth2/authorization/google" className="login-google">
-              구글로 로그인
-            </a>
-            <a href="/oauth2/authorization/naver" className="login-naver">
-              네이버로 로그인
-            </a>
-            <a href={KAKAO_AUTH_URL} className="login-kakao">
-              카카오톡으로 로그인
-            </a>
+          <div className="login-form">
+            <div className="login-form-ID">
+              <span className="login-form-span">아이디</span>
+              <input onChange={handleChangeID} />
+            </div>
+
+            <div className="login-form-Password">
+              <span className="login-form-span">비밀번호</span>
+              <input onChange={handleChangePassword} />
+            </div>
+          </div>
+          <div className="button-Container">
+            <button className="loginButton" onClick={onClickLogin}>
+              log in
+            </button>
+            <button className="signupButton" onClick={onClickSignup}>
+              sign up
+            </button>
           </div>
         </div>
       </div>

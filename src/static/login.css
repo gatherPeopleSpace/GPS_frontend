@@ -50,41 +50,42 @@
   text-align: center;
 }
 
-.login-form-button {
+.login-form {
   margin-top: 60px;
 }
 
-.login-google,
-.login-naver,
-.login-kakao {
-  width: 200px;
-  height: 30px;
+.login-form-ID,
+.login-form-Password {
+  font-size: 15px;
+  margin-left: 20px;
+  margin-top: 10px;
+  display: flex;
+  /* background-color: aquamarine; */
+}
+
+.login-form-ID input,
+.login-form-Password input {
+  width: 60px;
+  font-size: 11px;
+}
+
+.login-form-span {
+  width: 70px;
+  margin-right: 10px;
+}
+
+.button-Container {
+  width: 100%;
+  margin-top: 35px;
+}
+
+.loginButton {
+  margin-right: 20px;
+  margin-left: 12vw;
+}
+
+.signupButton {
+  margin-top: 10px;
   display: block;
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgb(204, 204, 204);
-  margin-left: 50px;
-  margin-top: 5px;
-  font-size: 12px;
-  box-shadow: none;
-  text-align: center;
-  padding-top: 15px;
+  margin-left: 11.5vw;
 }
-
-.login-google {
-  background-color: white;
-}
-
-.login-naver {
-  background-color: rgb(77, 185, 86);
-}
-
-.login-kakao {
-  background-color: rgb(255, 230, 0);
-}
-
-/* form{
-    margin-top : 8px;
-    font-size: 10px;
-    margin-left: 50px;
-} */

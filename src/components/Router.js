@@ -12,6 +12,7 @@ import About from "../pages/About";
 import MyMap from "../pages/MyMap";
 import Navigation from "../pages/Navigation";
 import LogIn from "../pages/LogIn";
+import SignUp from "../pages/SignUp";
 import KakaoRedirectHandler from "./KakaoRedirectHandler";
 
 const AppRouter = () => {
@@ -24,6 +25,7 @@ const AppRouter = () => {
     isPublic: false,
     profile: "",
     introduce: "",
+    password: "",
   });
   return (
     <BrowserRouter>
@@ -41,7 +43,19 @@ const AppRouter = () => {
           </Route>
 
           <Route exact path="/login">
-            <LogIn setIsLoggedIn={setIsLoggedIn} setUserObj={setUserObj} />
+            <LogIn
+              userObj={userObj}
+              setUserObj={setUserObj}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          </Route>
+
+          <Route exact path="/signup">
+            <SignUp
+              userObj={userObj}
+              setUserObj={setUserObj}
+              setIsLoggedIn={setIsLoggedIn}
+            />
           </Route>
 
           <Route exact path="/login/oauth2/code/kakao">

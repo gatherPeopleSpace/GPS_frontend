@@ -1,0 +1,70 @@
+@import "./reset.css";
+
+.SignUp-Container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.SignUpform-Container {
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(138, 138, 138);
+  width: 60vw;
+  height: 300px;
+  margin-left: 23vw;
+  margin-top: 100px;
+
+  min-width: 380px;
+  max-height: 500px;
+}
+
+.header {
+  position: fixed;
+  margin-left: 50px;
+  margin-top: 30px;
+
+  max-height: 20px;
+  min-width: 50px;
+}
+
+.Input-Container {
+  margin-top: 90px;
+}
+
+.SignUpform-Name,
+.SignUpform-ID,
+.SignUpform-Password,
+.SignUpform-Email {
+  margin-top: 15px;
+  margin-left: 8vw;
+  width: 60%;
+  display: flex;
+}
+
+.checkOverlap {
+  margin-left: 1vw;
+  min-width: 70px;
+}
+
+.SignUpform-Name div,
+.SignUpform-ID div,
+.SignUpform-Password div,
+.SignUpform-Email div {
+  /* background-color: rgba(255, 217, 0, 0.5); */
+}
+
+.formSpan {
+  min-width: 70px;
+}
+
+input {
+  width: 20vw;
+  min-width: 180px;
+  max-height: 20px;
+}
+
+.SignUpButton {
+  margin-left: 28vw;
+  margin-top: 40px;
+}
