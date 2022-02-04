@@ -13,30 +13,22 @@ const SignUp = ({ setUserObj, userObj }) => {
   const [EMAIL, setEmail] = useState("");
 
   const handleChangeName = (e) => {
-    const { name, value } = e.target;
-    const newName = { name: value };
-    setName(newName);
+    setName(e.target.value);
     console.log(NAME);
   };
 
   const handleChangeID = (e) => {
-    const { id, value } = e.target;
-    const newID = { id: value };
-    setID(newID);
+    setID(e.target.value);
     console.log(ID);
   };
 
   const handleChangePassword = (e) => {
-    const { password, value } = e.target;
-    const newPassword = { password: value };
-    setPassword(newPassword);
+    setPassword(e.target.value);
     console.log(PASSWORD);
   };
 
   const handleChangeEmail = (e) => {
-    const { email, value } = e.target;
-    const newEmail = { email: value };
-    setEmail(newEmail);
+    setEmail(e.target.value);
     console.log(EMAIL);
   };
 
@@ -58,7 +50,7 @@ const SignUp = ({ setUserObj, userObj }) => {
     console.log(userObj);
 
     axios
-      .post(`http://localhost:8080/signup`, JSON.stringify(userObj), {
+      .post(`http://localhost:8080/signup`, userObj, {
         headers: {
           "Content-Type": "application/json",
         },
