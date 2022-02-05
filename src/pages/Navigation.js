@@ -8,16 +8,25 @@ const Navigation = (props) => {
   const history = useHistory();
 
   const onLogoutClick = () => {
-    axios({
-      method: "POST",
-      url: `http://localhost:8080/logout`,
-    }).then((res) => {
-      if (res.status === 201 || res.status === 200) {
-        props.setIsLoggedIn(false);
-        window.alert("로그아웃 되었습니다.");
+    axios
+      .post(`/logout`, {
+        headers: {
+          // "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        if (res.status === 201 || res.status === 200) {
+          props.setIsLoggedIn(false);
+          localStorage.removeItem("token");
+          window.alert("로그아웃 되었습니다.");
+          history.push("/home");
+        } else window.alert("로그아웃 실패하였습니다.");
+      })
+      .catch((err) => {
+        window.alert(err);
         history.push("/home");
-      } else window.alert("로그아웃 실패하였습니다.");
-    });
+      });
   };
   return (
     <nav className="nav">
@@ -36,7 +45,7 @@ const Navigation = (props) => {
       )}
 
       <div className="nav-loggedIn">
-        {!props.isLoggedIn ? (
+        {!localStorage.getItem("token") ? (
           <Link to="/login" className="logIn-button">
             log in
           </Link>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Redirect,
   HashRouter as Router,
@@ -20,13 +20,31 @@ const AppRouter = () => {
   //아이디(userId), email, 이름, isPublic, 프사 ,닉네임(null), 로그인 타입(null)
   const [userObj, setUserObj] = useState({
     id: "",
+    password: "",
     email: "",
     name: "",
     // isPublic: false,
     // profile: "",
     // introduce: "",
-    password: "",
   });
+  const [TOKEN, setTOKEN] = useState("");
+
+  useEffect(() => {
+    try {
+      const tokenCheck = localStorage.getItem("token");
+      if (!tokenCheck) {
+        setIsLoggedIn(false);
+        return;
+      } else {
+        setTOKEN(JSON.parse(tokenCheck));
+        setIsLoggedIn(true);
+        console.log(TOKEN);
+      }
+    } catch (e) {
+      console.log("localStorage is not working");
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       <Switch>
@@ -77,14 +95,7 @@ const AppRouter = () => {
           ) : (
             //로그인 안되어 있으면 mymap, gallery url에서 home으로 redirect
             <>
-              {" "}
-              <Route exact path="/MyMap">
-                <MyMap userObj={userObj} />
-              </Route>
-              <Route exact path="/gallery">
-                <Gallery userObj={userObj} setUserObj={setUserObj} />
-              </Route>
-              {/* <Route
+              <Route
                 exact
                 path="/MyMap"
                 render={() => {
@@ -98,7 +109,7 @@ const AppRouter = () => {
                 render={() => {
                   return <Redirect to="/home" />;
                 }}
-              /> */}
+              />
             </>
           )}
 

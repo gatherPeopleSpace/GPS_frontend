@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import "../static/login.css";
 import { KAKAO_AUTH_URL } from "../components/OAuth";
 import axios from "axios";
-import profileImage from "../static/media/KakaoTalk_20210328_192027988.jpg";
 
 const LogIn = ({ setIsLoggedIn, setUserObj, userObj }) => {
   const history = useHistory();
@@ -20,10 +19,9 @@ const LogIn = ({ setIsLoggedIn, setUserObj, userObj }) => {
   };
 
   const onClickLogin = () => {
-    console.log({ id: id, password: password });
     axios
       .post(
-        `http://localhost:8080/login`,
+        `/login`,
         { id: id, password: password },
         {
           headers: {
@@ -33,11 +31,12 @@ const LogIn = ({ setIsLoggedIn, setUserObj, userObj }) => {
       )
       .then((res) => {
         if (res.status === 201 || res.status === 200) {
-          setIsLoggedIn(true);
-          console.log(res);
-          const newUserObj = res.userObj;
-          //res에서 userObj 받아와서 setUserObj로 userObj 받아오는 코드 짜기
+          const newUserObj = JSON.parse(res.config.data);
           setUserObj(newUserObj);
+          console.log(userObj);
+
+          localStorage.setItem("token", res.data);
+          setIsLoggedIn(true);
           history.push("/home");
         } else {
           window.alert("로그인에 실패하였습니다.");

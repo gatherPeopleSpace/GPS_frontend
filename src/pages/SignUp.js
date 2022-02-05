@@ -46,7 +46,7 @@ const SignUp = ({ setUserObj, userObj }) => {
     console.log(userObj);
 
     axios
-      .post(`http://localhost:8080/signup`, userObj, {
+      .post(`/signup`, userObj, {
         headers: {
           "Content-Type": "application/json",
         },

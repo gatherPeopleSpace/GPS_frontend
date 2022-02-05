@@ -8,6 +8,7 @@ import Follow from "../components/Follow";
 import Pagination from "../components/Pagination";
 import GalleryFollow from "../components/GalleryFollow";
 import EditIntro from "../components/EditIntro";
+import profileImage from "../static/media/KakaoTalk_20210328_192027988.jpg";
 
 import sen1 from "../static/media/sen_1.png";
 import sen2 from "../static/media/sen_2.png";
@@ -127,7 +128,7 @@ const Gallery = (props) => {
       <div className="g-Content-container">
         <div className="g-User-container">
           <div className="User-profile">
-            <img className="User-profile-image" src={props.userObj.profile} />
+            <img className="User-profile-image" src={profileImage} />
           </div>
           <div className="User-header">{props.userObj.name} 님의 gallery</div>
 
