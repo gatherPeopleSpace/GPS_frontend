@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../static/home.css";
 import NaverMapAPI from "../components/NaverMapAPI";
+import { useHistory } from "react-router-dom";
 
-const Home = () => {
+const Home = ({ userObj, setUserObj }) => {
+  const history = useHistory();
+
   const { naver } = window;
   const [address, setAddress] = useState("");
   const [roadAddress, setRoadAddress] = useState(null);
@@ -12,13 +15,15 @@ const Home = () => {
   const [zoom, setZoom] = useState(12);
 
   const [message, setMessage] = useState("");
+
+  setUserObj(history.location.state);
   useEffect(() => {
     fetch("/")
       .then((response) => response.text())
       .then((message) => {
         setMessage(message);
       });
-  }, []);
+  }, [userObj]);
 
   const handleChange = (e) => {
     const { address, value } = e.target;

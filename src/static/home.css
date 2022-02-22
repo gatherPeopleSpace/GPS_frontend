@@ -9,22 +9,24 @@
 }
 
 .search-container {
-  margin-top: 45px;
+  margin-top: 10px;
   margin-left: 10px;
   position: absolute;
   display: flex;
 }
 .findAddress {
+  font-size: 18px;
+
   position: relative;
-  width: 200px;
-  height: 15px;
+  width: 300px;
   background-color: rgba(199, 199, 199, 0.5);
   border-width: thin;
 }
 
 .submitAddress-button {
+  font-size: 15px;
+
   position: relative;
   margin-left: 5px;
   padding: 0;
-  font-size: 12px;
 }

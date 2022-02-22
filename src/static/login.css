@@ -1,52 +1,50 @@
 @import "./reset.css";
 
 .login-container {
-  position: absolute;
+  position: static;
   margin-top: 70px;
-  margin-left: 150px;
   display: flex;
+  justify-content: center;
 }
 
 .login-main {
-  width: 300px;
-  height: 350px;
+  background-color: rgb(255, 246, 234);
+  width: 380px;
+  height: 400px;
   display: block;
 }
 
 .login-main-header {
   margin-top: 130px;
+  margin-bottom: 20px;
   margin-left: 40px;
   width: 500px;
-  font-size: 20px;
-  margin-bottom: 20px;
+  font-size: 28px;
 }
 
 .login-main-content {
-  width: 500px;
-  font-size: 12px;
+  /* background-color: rgb(110, 78, 35); */
+  font-size: 16px;
   margin-left: 40px;
   margin-bottom: 5px;
 }
 
 .login-form-container {
-  width: 300px;
-  height: 350px;
-  margin-left: 100px;
-  display: block;
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgb(204, 204, 204);
+  width: 380px;
+  height: 400px;
+  margin-left: 40px;
+  border: 1px solid rgb(204, 204, 204);
 }
 
 .login-form-header {
   margin-top: 50px;
   text-align: center;
-  font-size: 20px;
+  font-size: 25px;
   margin-bottom: 30px;
 }
 
 .login-form-content {
-  font-size: 11px;
+  font-size: 15px;
   text-align: center;
 }
 
@@ -56,17 +54,17 @@
 
 .login-form-ID,
 .login-form-Password {
-  font-size: 15px;
-  margin-left: 20px;
+  font-size: 17px;
+
   margin-top: 10px;
+  justify-content: center;
   display: flex;
-  /* background-color: aquamarine; */
 }
 
 .login-form-ID input,
 .login-form-Password input {
-  width: 60px;
-  font-size: 11px;
+  width: 60%;
+  font-size: 15px;
 }
 
 .login-form-span {
@@ -75,17 +73,18 @@
 }
 
 .button-Container {
+  position: static;
+  justify-content: center;
+  display: flex;
   width: 100%;
-  margin-top: 35px;
+
+  margin-top: 40px;
 }
 
-.loginButton {
-  margin-right: 20px;
-  margin-left: 12vw;
-}
-
+.loginButton,
 .signupButton {
-  margin-top: 10px;
-  display: block;
-  margin-left: 11.5vw;
+  font-size: 17px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 5px 10px 5px 10px;
 }

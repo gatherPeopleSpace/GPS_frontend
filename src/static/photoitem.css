@@ -1,16 +1,16 @@
 @import "./reset.css";
 
 .photoItem-Container {
-  max-width: 600px;
+  max-width: 800px;
   display: grid;
-  grid-template-columns: 150px 150px 150px 150px;
-  grid-template-rows: 150px 150px;
+  grid-template-columns: 200px 200px 200px 200px;
+  grid-template-rows: 200px 200px;
 }
 
 .photoItem-Container img {
   object-fit: cover;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
 }
 
 .img-deleteButton {

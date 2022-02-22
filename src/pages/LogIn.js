@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "../static/login.css";
-import { KAKAO_AUTH_URL } from "../components/OAuth";
 import axios from "axios";
 
 const LogIn = ({ setIsLoggedIn, setUserObj, userObj }) => {
@@ -31,13 +30,23 @@ const LogIn = ({ setIsLoggedIn, setUserObj, userObj }) => {
       )
       .then((res) => {
         if (res.status === 201 || res.status === 200) {
-          const newUserObj = JSON.parse(res.config.data);
-          setUserObj(newUserObj);
-          console.log(userObj);
+          const newUserObj = res.data;
+          setUserObj({
+            id: newUserObj.id,
+            password: newUserObj.password,
+            email: newUserObj.email,
+            name: newUserObj.name,
+          });
+          console.log("LogIn:", userObj);
 
-          localStorage.setItem("token", res.data);
+          localStorage.setItem("token", res.headers.authorization);
+          localStorage.setItem("id", res.data.id);
+          localStorage.setItem("password", res.data.password);
+          localStorage.setItem("name", res.data.name);
+          localStorage.setItem("email", res.data.email);
+
           setIsLoggedIn(true);
-          history.push("/home");
+          history.push({ pathname: "/home", state: userObj });
         } else {
           window.alert("로그인에 실패하였습니다.");
           history.push("/login");

@@ -1,65 +1,43 @@
 @import "./reset.css";
 
 .Gallery-container {
-  width: 100%;
-  position: absolute;
+  position: static;
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 .g-nav-container {
-  height: 25px;
-  width: 100%;
-  background-color: white;
-  position: fixed;
-  display: inline-block;
-  padding-top: 50px;
+  position: absolute;
+
+  padding: 20px;
+  right: 0;
 }
 
-.g-nav li {
-  float: right;
+ul li {
+  list-style-type: none;
+  float: left;
 }
 
 .random-button {
-  height: 20px;
-  width: 60px;
-  font-size: 10px;
   margin-right: 5px;
 }
 
-/* .find-container {
-  height: 20px;
-} */
-
-/* .find-input {
-  text-align: center;
-  vertical-align: bottom;
-  font-size: 10px;
-  width: 60px;
-  height: 15px;
-} */
-
 .find-button,
 .add-button {
-  font-size: 12px;
+  font-size: 15px;
   padding: 0;
-  width: 20px;
-  height: 20px;
-  margin-left: 3px;
-}
-
-.add-button {
-  margin-top: 1px;
   margin-right: 5px;
 }
 
 .g-Content-container {
-  position: absolute;
-  margin-top: 90px;
+  position: static;
+  margin-top: 70px;
 }
 
 .g-User-container {
-  margin-left: 211px;
-  height: 135px;
-  width: 600px;
+  height: 150px;
+  width: 800px;
   background-color: rgb(233, 233, 233);
 }
 
@@ -70,15 +48,15 @@
 }
 
 .User-profile-image {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
 }
 
 .User-header,
 .User-introduction,
 .User-follow {
   position: relative;
-  margin-left: 150px;
+  margin-left: 180px;
 }
 
 .User-follow {
@@ -86,54 +64,36 @@
 }
 
 .User-header {
-  font-size: 16px;
-  padding-top: 20px;
+  font-size: 20px;
+  padding-top: 25px;
 }
 .User-introduction {
-  font-size: 14px;
+  font-size: 17px;
 }
 
 .User-follower,
 .User-following,
 .User-addFriend {
   margin-right: 20px;
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .g-myRecords {
-  position: absolute;
   height: 430px;
   margin-top: 30px;
 }
 
-/* .g-photo-filter {
-  margin-left: 660px;
-  display: flex;
-}
-
-.photo-filter-kinds,
-.photo-filter-places {
-  font-size: 11px;
-  width: 70px;
-  margin-right: 10px;
-  text-align: center;
-} */
-
 .myRecords-header,
 .myRecords-photoList {
-  margin-left: 211px;
-  position: relative;
+  /* position: relative; */
 }
 .myRecords-header {
   width: 100px;
-  margin-top: -10px;
-  font-size: 13px;
   margin-bottom: 10px;
 }
 
 .myRecords-photoList {
-  height: 350px;
-  width: 600px;
+  height: 400px;
   background-color: rgba(209, 209, 209, 0.5);
   margin-bottom: 20px;
 }

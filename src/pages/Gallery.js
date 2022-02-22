@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
+
 import PostModal from "../components/PostModal";
 import "../static/gallery.css";
 import Footer from "../components/Footer";
@@ -20,8 +22,9 @@ import kiki3 from "../static/media/kiki_3.jpg";
 import ponyo1 from "../static/media/ponyo_1.jpg";
 import ponyo2 from "../static/media/ponyo_2.jpg";
 import ponyo3 from "../static/media/ponyo_3.jpg";
+import LoadUser from "../components/LoadUser";
 
-const Gallery = (props) => {
+const Gallery = ({ userObj, setUserObj }) => {
   const [photos, setPhotos] = useState([
     { id: 1, src: sen1 },
     { id: 2, src: sen2 },
@@ -75,20 +78,27 @@ const Gallery = (props) => {
     { id: 60, src: ponyo3 },
   ]);
 
-  // useEffect(() => {
-  //   // url의 userId=n 부분에서 n 가져오기
-  //   const url = new URL(window.location.href);
-  //   const urlParams = url.searchParams;
-  //   setPageUserId = urlParams.get("userId");
-
-  //   //photoList 가져오기
-  //   fetch("http://localhost:8080/gallery/{page_userId}")
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       console.log(1, res);
-  //       setPhotos(res);
-  //     });
-  // }, []);
+  useEffect(() => {
+    setUserObj({
+      id: localStorage.getItem("id"),
+      password: localStorage.getItem("password"),
+      email: localStorage.getItem("email"),
+      name: localStorage.getItem("name"),
+    });
+    console.log(userObj);
+    //photoList 가져오기
+    axios
+      .get(`http://localhost:8080/gallery/`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        // setPhotos();
+      });
+  }, []);
 
   const [page_userId, setPageUserId] = useState("");
   const [isFollowed, setIsFollowed] = useState();
@@ -102,12 +112,17 @@ const Gallery = (props) => {
   const history = useHistory();
 
   const onClickRandom = () => {
-    fetch("http://localhost:8080/gallery/")
+    axios
+      .get(`/gallery`, {
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: localStorage.getItem("token"),
+        },
+      })
       .then((res) => res.json())
       .then((res) => {
-        if (res.token) {
-          localStorage.setItem("token", res.token);
-          history.push("/gallery/userId={res}");
+        if (res.data) {
+          history.push("/gallery/userId={res.data}");
         }
       });
   };
@@ -122,47 +137,24 @@ const Gallery = (props) => {
   const currentPosts = photos.slice(indexOfFirstPost, indexOfLastPost);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const username = userObj.name;
   return (
     //쓸데없는 DIV 없애기
     <div className="Gallery-container">
-      <div className="g-Content-container">
-        <div className="g-User-container">
-          <div className="User-profile">
-            <img className="User-profile-image" src={profileImage} />
-          </div>
-          <div className="User-header">{props.userObj.name} 님의 gallery</div>
-
-          <EditIntro
-            intro={props.userObj.intro}
-            setUserObj={props.setUserObj}
-          />
-
-          <GalleryFollow />
-        </div>
-
-        <div className="g-myRecords">
-          <div className="myRecords-header">나의 기록</div>
-          <div className="myRecords-photoList">
-            <PhotoItem photolist={currentPosts} />
-            <Pagination
-              postsPerPage={postsPerPage}
-              totalPosts={photos.length}
-              currentPage={currentPage}
-              paginate={paginate}
-            ></Pagination>
-          </div>
-
-          <Footer />
-        </div>
-      </div>
       <div className="g-nav-container">
-        <ul className="g-nav">
+        <ul>
           <li>
             <button className="add-button" onClick={modalClose}>
               ➕
             </button>
           </li>
-          {modalOpen && <PostModal modalClose={modalClose}></PostModal>}
+          {modalOpen && (
+            <PostModal
+              userObj={userObj}
+              modalClose={modalClose}
+              setUserObj={setUserObj}
+            />
+          )}
           <li>
             <button className="random-button" onClick={onClickRandom}>
               파도타기
@@ -170,6 +162,31 @@ const Gallery = (props) => {
           </li>
         </ul>
       </div>
+      <div className="g-Content-container">
+        <div className="g-User-container">
+          <div className="User-profile">
+            <img className="User-profile-image" src={profileImage} />
+          </div>
+          <div className="User-header">{username} 님의 gallery</div>
+
+          <EditIntro intro={userObj.intro} setUserObj={setUserObj} />
+          <GalleryFollow />
+        </div>
+
+        <div className="g-myRecords">
+          <div className="myRecords-header">나의 기록</div>
+          <div className="myRecords-photoList">
+            <PhotoItem photolist={currentPosts} userObj={userObj} />
+            <Pagination
+              postsPerPage={postsPerPage}
+              totalPosts={photos.length}
+              currentPage={currentPage}
+              paginate={paginate}
+            ></Pagination>
+          </div>
+        </div>
+      </div>
+      {/* <Footer /> */}
     </div>
   );
 };

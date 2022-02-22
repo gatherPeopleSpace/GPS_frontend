@@ -11,7 +11,7 @@ const Navigation = (props) => {
     axios
       .post(`/logout`, {
         headers: {
-          // "Content-Type": "application/json",
+          "Content-Type": "application/json",
           Authorization: localStorage.getItem("token"),
         },
       })
@@ -20,7 +20,7 @@ const Navigation = (props) => {
           props.setIsLoggedIn(false);
           localStorage.removeItem("token");
           window.alert("로그아웃 되었습니다.");
-          history.push("/home");
+          history.push("/login");
         } else window.alert("로그아웃 실패하였습니다.");
       })
       .catch((err) => {
@@ -37,7 +37,7 @@ const Navigation = (props) => {
         </Link>
       </div>
 
-      {props.isLoggedIn && (
+      {localStorage.getItem("token") && (
         <div className="nav-links">
           <Link to="/myMap">myMap</Link>
           <Link to="/gallery">gallery</Link>

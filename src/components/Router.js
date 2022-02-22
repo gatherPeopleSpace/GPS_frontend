@@ -13,11 +13,10 @@ import MyMap from "../pages/MyMap";
 import Navigation from "../pages/Navigation";
 import LogIn from "../pages/LogIn";
 import SignUp from "../pages/SignUp";
-import KakaoRedirectHandler from "./KakaoRedirectHandler";
 
 const AppRouter = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  //아이디(userId), email, 이름, isPublic, 프사 ,닉네임(null), 로그인 타입(null)
+
   const [userObj, setUserObj] = useState({
     id: "",
     password: "",
@@ -27,7 +26,6 @@ const AppRouter = () => {
     // profile: "",
     // introduce: "",
   });
-  const [TOKEN, setTOKEN] = useState("");
 
   useEffect(() => {
     try {
@@ -36,9 +34,8 @@ const AppRouter = () => {
         setIsLoggedIn(false);
         return;
       } else {
-        setTOKEN(JSON.parse(tokenCheck));
         setIsLoggedIn(true);
-        console.log(TOKEN);
+        console.log(tokenCheck);
       }
     } catch (e) {
       console.log("localStorage is not working");
@@ -47,6 +44,7 @@ const AppRouter = () => {
 
   return (
     <BrowserRouter>
+      <Navigation setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
       <Switch>
         <>
           <Route
@@ -57,7 +55,7 @@ const AppRouter = () => {
             }}
           />
           <Route exact path="/home">
-            <Home />
+            <Home userObj={userObj} setUserObj={setUserObj} />
           </Route>
 
           <Route exact path="/login">
@@ -76,17 +74,10 @@ const AppRouter = () => {
             />
           </Route>
 
-          <Route exact path="/login/oauth2/code/kakao">
-            <KakaoRedirectHandler
-              setIsLoggedIn={setIsLoggedIn}
-              setUserObj={setUserObj}
-            />
-          </Route>
-
-          {isLoggedIn ? ( //로그인 돼있으면 mymap, gallery url에서 해당 component 보여줌
+          {localStorage.getItem("token") ? ( //로그인 돼있으면 mymap, gallery url에서 해당 component 보여줌
             <>
               <Route exact path="/MyMap">
-                <MyMap userObj={userObj} />
+                <MyMap userObj={userObj} setUserObj={setUserObj} />
               </Route>
               <Route exact path="/gallery">
                 <Gallery userObj={userObj} setUserObj={setUserObj} />
@@ -102,7 +93,6 @@ const AppRouter = () => {
                   return <Redirect to="/home" />;
                 }}
               />
-
               <Route
                 exact
                 path="/gallery"
@@ -115,10 +105,6 @@ const AppRouter = () => {
 
           <Route exact path="/about">
             <About />
-          </Route>
-
-          <Route path="/">
-            <Navigation setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
           </Route>
         </>
       </Switch>
