@@ -15,7 +15,7 @@ const EditIntro = ({ intro, setUserObj }) => {
 
   const onClickSubmitIntro = () => {
     setEditState(!editstate);
-    setUserObj({ introduce: newIntro });
+    // setUserObj({ introduce: newIntro });
     //db 저장 요청 코드
   };
 
